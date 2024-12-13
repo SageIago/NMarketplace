@@ -83,7 +83,7 @@ contract Marketplace is ERC721URIStorage {
         require(price > 0, "Price must be at least 1 wei");
         require(
             msg.value == listingPrice,
-            "Price must be equals to listing price"
+            "Price must be equal to listing price"
         );
 
         _marketItemIds[tokenId] = MarketItem(
@@ -129,7 +129,7 @@ contract Marketplace is ERC721URIStorage {
         _transfer(msg.sender, address(this), tokenId);
     }
 
-    function CreateMarketSale(uint256 tokenId) public payable {
+    function createMarketSale(uint256 tokenId) public payable {
         uint256 price = _marketItemIds[tokenId].price;
 
         require(
@@ -137,7 +137,7 @@ contract Marketplace is ERC721URIStorage {
             "Please submit the asking price in order to complete the purchase"
         );
 
-        _marketItemIds[tokenId].owner == payable(msg.sender);
+        _marketItemIds[tokenId].owner = payable(msg.sender);
         _marketItemIds[tokenId].sold = true;
         _marketItemIds[tokenId].seller = payable(address(0));
 
@@ -195,7 +195,7 @@ contract Marketplace is ERC721URIStorage {
         return items;
     }
 
-    function FetchItemsListed() public view returns (MarketItem[] memory) {
+    function fetchItemsListed() public view returns (MarketItem[] memory) {
         uint256 totalItemsCount = _tokenIds.current();
         uint256 itemCount = 0;
         uint256 currentIndex = 0;
