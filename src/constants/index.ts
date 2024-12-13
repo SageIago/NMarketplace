@@ -27,7 +27,7 @@ export const Sales = [
   { no: "240k+", title: "Total Artists" },
 ];
 
-export const CONTRACT_ADDRESS = "0xe7f1725E7734CE288F8367e1Bb143E90bb3F0512";
+export const CONTRACT_ADDRESS = "0x9fE46736679d2D9a65F0992F2272dE9f3c7fa6e0";
 export const CONTRACT_ABI = marketplaceAbi;
 
 export const SidebarLinks = [
@@ -57,3 +57,19 @@ export const SidebarLinks = [
     icon: BadgeDollarSign,
   }),
 ];
+
+export const FeaturesArray = [
+  {
+    title: "Create NFT",
+    description:
+      "Create your own NFT's and sell them on the marketplace. You can also buy NFT's from other users.",
+  },
+  {
+    title: "Mint NFT",
+    description: "Mint your NFT's and sell them on the marketplace. With Wagmi, you can mint your NFT's and sell them on the marketplace.",
+  },
+  {
+    title: "Cheap Listing Price",
+    description: "List your NFT's at a cheap price and sell them on the marketplace. And your proceeds will be sent to your wallet.",
+  }
+]
