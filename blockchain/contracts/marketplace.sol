@@ -66,8 +66,8 @@ contract Marketplace is ERC721URIStorage {
         string memory tokenURI,
         uint256 price
     ) public payable returns (uint256) {
-        //  require(msg.value >= listingPrice, "Must pay listing fee");
-        //  require(price > 0, "Price must be greater than 0");
+        require(msg.value >= listingPrice, "Must pay listing fee");
+        require(price > 0, "Price must be greater than 0");
         _tokenIds.increment();
 
         uint256 newTokenId = _tokenIds.current();
@@ -117,8 +117,8 @@ contract Marketplace is ERC721URIStorage {
             "Only The Owner can Call this Function"
         );
         require(
-            msg.value > listingPrice,
-            "Price must be greater than the listing price"
+            msg.value >= listingPrice,
+            "Price must be equal or greater than the listing price"
         );
 
         _marketItemIds[tokenId].sold = false;
@@ -139,7 +139,7 @@ contract Marketplace is ERC721URIStorage {
             "Please submit the asking price in order to complete the purchase"
         );
 
-        _marketItemIds[tokenId].owner == payable(msg.sender);
+        _marketItemIds[tokenId].owner = payable(msg.sender);
         _marketItemIds[tokenId].sold = true;
         _marketItemIds[tokenId].seller = payable(address(0));
 
@@ -150,7 +150,7 @@ contract Marketplace is ERC721URIStorage {
         // Transfer the listing price to the marketplace owner
         payable(marketplaceOwner).transfer(listingPrice);
         // Transfer the rest funds to the seller
-        payable(_marketItemIds[tokenId].seller).transfer(msg.value);
+        payable(_marketItemIds[tokenId].seller).transfer(msg.value - listingPrice);
     }
 
     // Get all Unsold NFT Data
