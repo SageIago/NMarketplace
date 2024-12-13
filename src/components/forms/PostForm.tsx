@@ -55,6 +55,7 @@ function PostForm() {
         abi: CONTRACT_ABI,
         functionName: "createToken",
         args: [values.tokenURI, BigInt(25600000000000000)],
+        value: BigInt(25600000000000000),
         // args: [values.tokenURI, usdToBigInt(Number(values.nftprice), 3974.78)],
       },
       {
